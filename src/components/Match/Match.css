@@ -1,0 +1,8 @@
+.Match {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c0c0c;
+  width: auto;
+  height: 80vh;
+}
