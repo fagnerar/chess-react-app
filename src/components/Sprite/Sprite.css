@@ -1,4 +1,5 @@
 .icon {
   width: 65%;
   height: 65%;
+  z-index: 1;
 }

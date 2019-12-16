@@ -1,20 +1,26 @@
 import React from 'react';
 
-import Piece from '../../../Piece/Piece';
+import Sprite from '../../../Sprite/Sprite';
 
 import './Square.css';
 
-const Square = ({ isDark, position, pieceType }) => {
-  const classes = isDark ? 'sq dark' : 'sq';
+const Square = ({ isDark, isSelected, clicked, position, pieceType }) => {
+  const classes = new Array(3);
+  classes.push('sq')
+  classes.push(isDark ? 'dark' : null);
+  classes.push(isSelected ? 'selected' : null);
 
   const chessPiece = pieceType
-    ? <Piece type={pieceType} position={position} />
+    ? <Sprite type={pieceType} />
     : null;
 
   return (
-    <div className={classes} position={position}>
+    <button className={classes.join(' ').trim()}
+      position={position}
+      onClick={() => clicked(position)}
+    >
       {chessPiece}
-    </div>
+    </button>
   );
 }
 

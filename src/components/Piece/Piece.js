@@ -4,11 +4,11 @@ import Sprite from '../Sprite/Sprite'
 
 import './Piece.css';
 
-const Piece = ({ type, position }) => {
+const Piece = ({ type }) => {
   return (
-    <button className="Piece">
+    <div className="Piece">
       <Sprite type={type} />
-    </button>
+    </div>
   );
 }
 

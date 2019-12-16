@@ -8,9 +8,12 @@ import { ReactComponent as ChessSprites } from '../../../resources/chess-pieces.
 import './Squares.css'
 
 const Squares = () => {
+  const [pieces, setPieces] = useState(initialPositions);
+  const [positionSelected, setPositionSelected] = useState(null);
+
   const squares = [];
   const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-  const [pieces, setPieces] = useState(initialPositions);
+
 
   const getLetterNumber = (index) => {
     const num = index < 8
@@ -35,17 +38,29 @@ const Squares = () => {
       const position = p[0] + p[1];
       const pieceType = pieces[position];
 
+      const isSelected = position === positionSelected;
+
       squares.push(
         <Square key={position}
           isDark={isDark}
+          isSelected={isSelected}
           position={position}
-          pieceType={pieceType} />
+          pieceType={pieceType}
+          clicked={() => {
+            return pieceType
+              ? clickHandler(position)
+              : null
+          }} />
       );
+      console.log(squares.length);
     }
 
     return squares;
   }
 
+  const clickHandler = (position) => {
+    setPositionSelected(position === positionSelected ? null : position);
+  }
 
   return (
     <section className="Squares">
