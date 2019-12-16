@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Icons from '../../Icons/Icons'
+import Square from './Square/Square';
+
+import initialPositions from '../../../utilities/initialPiecesPositions';
+import { ReactComponent as ChessSprites } from '../../../resources/chess-pieces.svg';
 
 import './Squares.css'
 
 const Squares = () => {
   const squares = [];
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+  const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  const [pieces, setPieces] = useState(initialPositions);
 
-  const getSquarePosition = (index) => {
+  const getLetterNumber = (index) => {
     const num = index < 8
       ? 8 : index < 16
         ? 7 : index < 24
@@ -25,17 +29,17 @@ const Squares = () => {
 
   const createSquares = () => {
     for (let i = 0; i < 64; i++) {
-      const position = getSquarePosition(i);
-      const evenLine = position[1] % 2 === 0;
-      const darkSquare = (evenLine && i % 2 === 1) || (!evenLine && i % 2 === 0);
-
-      const classes = darkSquare ? 'sq dark' : 'sq';
+      const p = getLetterNumber(i);
+      const evenLine = p[1] % 2 === 0;
+      const isDark = (evenLine && i % 2 === 1) || (!evenLine && i % 2 === 0);
+      const position = p[0] + p[1];
+      const pieceType = pieces[position];
 
       squares.push(
-        <div className={classes}
-          key={position[0] + position[1]}>
-          <Icons />
-        </div>
+        <Square key={position}
+          isDark={isDark}
+          position={position}
+          pieceType={pieceType} />
       );
     }
 
@@ -45,6 +49,7 @@ const Squares = () => {
 
   return (
     <section className="Squares">
+      <ChessSprites />
       {createSquares()}
     </section>
   );

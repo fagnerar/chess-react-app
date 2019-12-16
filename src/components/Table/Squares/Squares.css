@@ -6,14 +6,3 @@
   grid-template-columns: repeat(8, 1fr);
   background-color: #f3f0ff;
 }
-
-.sq {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.sq.dark {
-  background-color: #145374;
-}
