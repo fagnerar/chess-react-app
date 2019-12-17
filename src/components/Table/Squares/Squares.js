@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Square from './Square/Square';
-import { ReactComponent as ChessSprites } from '../../../resources/chess-pieces.svg';
 import initialState from './initialState';
 
 import './Squares.css'
@@ -12,14 +11,20 @@ const Squares = () => {
 
   const clickHandler = (position) => {
     const sqs = {...squares};
-    sqs[position].isSelected = !sqs[position].isSelected;
+    const positionIsSelected = sqs[position].isSelected;
+    
+    for (const pos in sqs) {
+      sqs[pos].isSelected = false;
+    }
+
+    sqs[position].isSelected = !positionIsSelected;
 
     setSquares(sqs)
   }
 
   const renderSquareList = () => {
     for (let position in squares) {
-      const sqInfo = squares[position]
+      const sqInfo = squares[position];
 
       const squareComponent = <Square key={position}
         isSelected={sqInfo.isSelected}
@@ -39,7 +44,6 @@ const Squares = () => {
 
   return (
     <section className="Squares">
-      <ChessSprites />
       {renderSquareList()}
     </section>
   );

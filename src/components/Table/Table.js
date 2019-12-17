@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Squares from './Squares/Squares'
+import { ReactComponent as ChessSprites } from '../../resources/chess-pieces.svg';
 
 import './Table.css';
 
@@ -28,6 +29,7 @@ const Table = () => {
           <div>7</div>
           <div>8</div>
         </div>
+        <ChessSprites />
         <Squares />
       </section>
     </section>
