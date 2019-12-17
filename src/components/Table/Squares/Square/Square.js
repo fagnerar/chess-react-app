@@ -4,10 +4,9 @@ import Sprite from '../../../Sprite/Sprite';
 
 import './Square.css';
 
-const Square = ({ isDark, isSelected, clicked, position, pieceType }) => {
+const Square = ({ isSelected, clicked, position, pieceType }) => {
   const classes = new Array(3);
-  classes.push('sq')
-  classes.push(isDark ? 'dark' : null);
+  classes.push('sq');
   classes.push(isSelected ? 'selected' : null);
 
   const chessPiece = pieceType

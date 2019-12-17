@@ -9,7 +9,7 @@
   position: relative;
 }
 
-.sq.dark {
+.sq:nth-child(2n+1) {
   background-color: #145374;
 }
 
